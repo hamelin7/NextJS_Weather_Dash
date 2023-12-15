@@ -4,7 +4,12 @@ const axios = require('axios');
 // Import the cors middleware for cross-origin resource sharing - this allows the getWeather API to be accessed from any domain
 const cors = require('cors'); 
 
-const weatherAPIkey = process.env.WEATHER_API_KEY;
+//will add this back after grading so that a new OpenWeatherMap API key is not needed to confirm this project works. 
+// Import the dotenv module to access the environment variables from the .env file
+//require('dotenv').config();
+//console.log(process.env.OWM_API_KEY);
+
+const weatherAPIkey = '42eac8752d7a3bf35e537584bcde6a11';
 const countryCode = 'US';
 
 const app = express();
