@@ -6,10 +6,9 @@ const cors = require('cors');
 
 //will add this back after grading so that a new OpenWeatherMap API key is not needed to confirm this project works. 
 // Import the dotenv module to access the environment variables from the .env file
-//require('dotenv').config();
-//console.log(process.env.OWM_API_KEY);
+require('dotenv').config({path: '../.env'});
 
-const weatherAPIkey = '42eac8752d7a3bf35e537584bcde6a11';
+const weatherAPIkey = process.env.OWM_API_KEY;
 const countryCode = 'US';
 
 const app = express();
@@ -18,6 +17,7 @@ const PORT = 3001;
 // Use the cors middleware to allow the getWeather API to be accessed from any domain
 app.use(cors()); 
 
+// Use the express.json() middleware to parse the request body as JSON
 app.use(express.json());
 
 // Create a route for the getWeather API
@@ -34,12 +34,14 @@ app.post('/getWeather', async (req, res) => {
     const lat  = locationResponse.data.lat;
     const lon  = locationResponse.data.lon;
 
+  //log response to console for error checking
+  //console.log(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${weatherAPIkey}`);
+
     // Get Weather Data using Lat/Lon
     const weatherResponse = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=42eac8752d7a3bf35e537584bcde6a11`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${weatherAPIkey}`
     );
     
-    //log response to console for error checking
     console.log(weatherResponse.data);
 
     // Extract specific weather information
