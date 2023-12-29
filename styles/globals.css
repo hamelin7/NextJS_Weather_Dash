@@ -15,7 +15,8 @@ nav{
   padding:15px;
 }
 nav a:hover {
-  
+  color:whitesmoke;
+  font-weight: bold;
 }
 main{
   align-content:center;
